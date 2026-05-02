@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSana Pro | Future Education</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4834d4; --secondary: #686de0; --bg: #f5f6fa;
+            --card: #ffffff; --text: #2f3640; --accent: #00d2d3;
+        }
+        .dark-mode {
+            --bg: #1e272e; --card: #2f3640; --text: #f5f6fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; transition: 0.5s; }
+
+        .grade-5 { background: #2ecc71 !important; color: white !important; font-weight: bold; border-radius: 5px; }
+        .grade-4 { background: #f1c40f !important; color: white !important; font-weight: bold; border-radius: 5px; }
+        .grade-3 { background: #e67e22 !important; color: white !important; font-weight: bold; border-radius: 5px; }
+        .grade-2 { background: #e74c3c !important; color: white !important; font-weight: bold; border-radius: 5px; }
+
+        /* --- БАСТЫ БЕТ (SPLASH) --- */
+        #landing-page {
+            position: fixed; width: 100%; height: 100vh; overflow-y: auto; overflow-x: hidden;
+            background: var(--bg); z-index: 5000; top: 0; left: 0; transition: 0.5s;
+        }
+        
+        .hero-section {
+            width: 100%; height: 100vh;
+            background: linear-gradient(-45deg, #4834d4, #686de0, #00d2d3, #1e272e);
+            background-size: 400% 400%;
+            animation: gradientSplash 15s ease infinite;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; position: relative; text-align: center; padding: 20px;
+        }
+        
+        .top-lang-switch {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.2); border: 1px solid white; color: white;
+            padding: 8px 15px; border-radius: 15px; font-weight: bold; cursor: pointer; outline: none;
+        }
+        .top-lang-switch option { color: #333; }
+
+        @keyframes gradientSplash {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .logo-main { 
+            font-family: 'Comfortaa', cursive; font-size: clamp(4rem, 8vw, 6rem); font-weight: 700; 
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3); letter-spacing: 2px;
+        }
+        
+        .enter-btns { margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
+        .enter-btns .btn { padding: 15px 40px; font-size: 1.1rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
+        .enter-btns .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 20px rgba(0,0,0,0.3); }
+        
+        .scroll-down {
+            position: absolute; bottom: 30px; color: white; font-size: 2rem;
+            animation: bounce 2s infinite; cursor: pointer;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-20px);} 60% {transform: translateY(-10px);} }
+
+        /* ЖАҢАРТЫЛҒАН АҚПАРАТ БӨЛІМІ (АШЫҚ ТҮСТІ, ӘДЕМІ) */
+        .info-section {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
+            color: #2f3640; padding: 100px 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 60px;
+            position: relative; overflow: hidden;
+        }
+        /* Декоративті элементтер */
+        .info-section::before, .info-section::after {
+            content: ''; position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0;
+        }
+        .info-section::before { width: 400px; height: 400px; background: rgba(72, 52, 212, 0.15); top: -100px; left: -100px; }
+        .info-section::after { width: 300px; height: 300px; background: rgba(0, 210, 211, 0.15); bottom: -50px; right: -50px; }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 50px; border-radius: 30px; max-width: 900px; width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05); backdrop-filter: blur(15px);
+            opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; z-index: 1;
+        }
+        .info-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); border-color: var(--primary);}
+        .info-card.visible { opacity: 1; transform: translateY(0); }
+        .info-card h2 { color: var(--primary); margin-bottom: 25px; font-size: 2.2rem; display: flex; align-items: center; gap: 15px;}
+        .info-card p, .info-card ul { font-size: 1.15rem; line-height: 1.8; color: #4b4b4b; }
+        .info-card ul { list-style: none; margin-top: 15px; }
+        .info-card ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);}
+        .info-card ul li i { color: #f1c40f; font-size: 1.5rem;}
+
+        /* AUTH OVERLAY */
+        .auth-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 6000;
+            padding: 20px;
+        }
+        .auth-card { 
+            background: rgba(255, 255, 255, 0.98); padding: 40px 30px; border-radius: 30px; 
+            width: 100%; max-width: 450px; max-height: 90vh; overflow-y: auto; text-align: center; position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); color: #2f3640;
+        }
+        .role-badge { padding: 8px 10px; border-radius: 10px; border: 2px solid transparent; cursor: pointer; transition: 0.3s; font-size: 12px;}
+        input[type="radio"]:checked + .role-badge { border-color: var(--primary); background: rgba(72, 52, 212, 0.1); }
+        .role-radio-group { display:none; justify-content:center; gap:5px; flex-wrap:wrap; margin-bottom:20px; background: #f1f2f6; padding: 15px 5px; border-radius: 15px;}
+
+        /* БАЗАЛЫҚ СТИЛЬДЕР */
+        #app-screen { display: none; min-height: 100vh; }
+        .sidebar {
+            width: 280px; background: var(--card); height: 100vh; position: fixed;
+            padding: 30px 20px; border-right: 1px solid #ddd; z-index: 3000; transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        .main-content { margin-left: 280px; width: calc(100% - 280px); padding: 40px; transition: 0.5s; overflow-x: hidden;}
+        .nav-link {
+            padding: 15px; margin: 8px 0; border-radius: 15px; cursor: pointer;
+            display: flex; align-items: center; gap: 15px; font-weight: 600; transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { background: var(--primary); color: white; transform: translateX(10px); }
+
+        .btn { padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;}
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--secondary); box-shadow: 0 5px 15px rgba(72, 52, 212, 0.3);}
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover, .btn-outline.active { background: var(--primary); color: white; }
+
+        /* ЖУРНАЛ СТИЛЬДЕРІ */
+        .journal-box { overflow-x: auto; background: var(--card); padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .journal-box::-webkit-scrollbar { height: 8px; }
+        .journal-box::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        th, td { padding: 10px; border: 1px solid #eee; text-align: center; font-size: 0.85rem; }
+        th { background: rgba(72, 52, 212, 0.05); color: var(--primary); font-weight: bold;}
+        .inp-grade { width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 8px 5px; font-family: inherit; font-weight: bold; transition: 0.3s;}
+        .inp-grade:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 5px rgba(72, 52, 212, 0.3);}
+        .absent-mark { background-color: #ff7675; color: white; }
+        .wa-btn { color: #2ecc71; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
+        .wa-btn:hover { transform: scale(1.2); }
+        .export-btns { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+
+        #chat-area { height: 400px; overflow-y: auto; background: #f9f9f9; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: flex; flex-direction: column; border: 1px solid #eee;}
+        .dark-mode #chat-area { background: #3b4252; border-color: #4c566a; }
+        .msg { margin-bottom: 15px; padding: 12px 18px; border-radius: 15px; max-width: 85%; line-height: 1.5; font-size: 0.95rem; box-shadow: 0 3px 10px rgba(0,0,0,0.05);}
+        .msg.bot { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; align-self: flex-start; border-bottom-left-radius: 2px;}
+        .msg.user { background: white; align-self: flex-end; border-bottom-right-radius: 2px; color: #333; border: 1px solid #eee;}
+        .dark-mode .msg.user { background: #4c566a; color: white; border-color: #4c566a;}
+
+        /* ҚМЖ СТИЛЬДЕРІ */
+        .kmj-container { background: var(--card); padding: 20px; border-radius: 20px; margin-top: 20px; }
+        .file-list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 12px; margin-bottom: 10px; transition: 0.3s;}
+        .file-list-item:hover { transform: translateX(5px); border-color: var(--primary); }
+        .dark-mode .file-list-item { background: #3b4252; border-color: #4c566a; }
+
+        .folder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; margin-top: 20px; }
+        .folder-item { background: var(--card); padding: 20px; border-radius: 20px; text-align: center; cursor: pointer; transition: 0.3s; border: 1px solid #eee; }
+        .folder-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
+
+        .ai-section { text-align: center; padding: 60px 20px; border-radius: 25px; overflow: hidden; position: relative; }
+        .platforms-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(270deg, #1e3c72, #2a5298, #ff7e5f, #00c6ff); background-size: 400% 400%; animation: gradientBG 12s ease infinite; z-index: 0; }
+        .apps { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; position: relative; z-index: 1; }
+        .card-platform { width: 140px; height: 140px; border-radius: 20px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; color: white; font-weight: bold; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.4s; }
+        .card-platform:hover { transform: scale(1.1) translateY(-10px); background: rgba(255,255,255,0.2); }
+
+        .schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .day-group { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .day-header-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 12px; border-radius: 12px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem;}
+        .lesson { background: #f8f9fa; border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; transition: 0.3s; border-left: 5px solid var(--accent); }
+        .dark-mode .lesson { background: #3b4252; border-color: #4c566a; }
+        .break-time { background: rgba(241, 196, 15, 0.2); padding: 8px 10px; border-radius: 8px; font-size: 12px; text-align: center; margin-bottom: 12px; color: #d35400; font-weight: bold; border: 1px dashed #f1c40f;}
+        .dark-mode .break-time { background: rgba(211, 84, 0, 0.3); color: #f1c40f;}
+
+        .t-chat-container { display: flex; flex-direction: column; height: 70vh; background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .t-chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: var(--bg); }
+        .t-msg { max-width: 80%; padding: 15px; border-radius: 15px; position: relative; line-height: 1.4; font-size: 0.95rem;}
+        .t-msg.mine { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 2px; }
+        .t-msg.others { align-self: flex-start; background: var(--card); color: var(--text); border-bottom-left-radius: 2px; border: 1px solid #ddd;}
+        
+        .randomizer-box { text-align: center; padding: 60px 20px; background: var(--card); border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); max-width: 600px; margin: 0 auto; }
+        .random-result { font-size: clamp(2rem, 5vw, 4rem); font-weight: bold; color: var(--primary); margin: 40px 0; min-height: 100px; text-shadow: 2px 2px 10px rgba(72, 52, 212, 0.2); transition: 0.2s;}
+
+        .author-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;}
+        .author-card { background: var(--card); padding: 40px 30px; border-radius: 30px; text-align: center; max-width: 450px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border-top: 6px solid var(--primary); flex: 1; min-width: 300px; transition: 0.3s;}
+        .author-card:hover { transform: translateY(-10px); }
+        .author-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: top; border: 6px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.15); margin-bottom: 25px; background: #eee;}
+
+        /* Мобильді бейімделу */
+        @media (max-width: 900px) {
+            .main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .sidebar { left: -320px; box-shadow: 5px 0 20px rgba(0,0,0,0.2); width: 300px;}
+            .sidebar.active { left: 0; }
+            header { flex-wrap: wrap; gap: 15px; }
+            .export-btns .btn { flex: 1; text-align: center; }
+            .info-card { padding: 30px 20px; }
+        }
+        @media (max-width: 480px) {
+            .auth-card { padding: 30px 20px; }
+            .randomizer-box { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="landing-page">
+        <section class="hero-section">
+            <select class="top-lang-switch" id="top-lang" onchange="switchLang(this.value)">
+                <option value="kz">Қазақша</option>
+                <option value="ru">Русский</option>
+            </select>
+
+            <div class="logo-main animate__animated animate__pulse animate__infinite">EduSana</div>
+            <p id="splash-desc" class="animate__animated animate__fadeInUp" data-t="splash" style="font-size: clamp(1.1rem, 3vw, 1.4rem); margin-top: 20px; opacity: 0.9; max-width: 700px; line-height: 1.6;">Мұғалімдер, директорлар мен оқушыларға арналған ақылды платформа</p>
+            
+            <div class="enter-btns animate__animated animate__fadeInUp animate__delay-1s">
+                <button class="btn btn-primary" onclick="openAuth('login')" data-t="login" style="background: white; color: var(--primary);">Кіру</button>
+                <button class="btn" style="border: 2px solid white; color: white; background: transparent;" onclick="openAuth('reg')" data-t="reg">Тіркелу</button>
+            </div>
+            
+            <i class="fas fa-chevron-down scroll-down" onclick="document.getElementById('info-section').scrollIntoView({behavior:'smooth'})"></i>
+        </section>
+
+        <section id="info-section" class="info-section">
+            <div class="info-card">
+                <h2 data-t="who_for"><i class="fas fa-users"></i> Кімдерге арналған?</h2>
+                <p data-t="who_for_text">Бұл платформа мектептің барлық буынына арналған біртұтас экожүйе:
+                    <br><br><b>👨‍💼 Директор / Завуч:</b> Мектептің толық статистикасын, мұғалімдердің жүктемесін, журналдар мен сабақ жоспарларын бақылауға арналған құрал.
+                    <br><b>👨‍🏫 Мұғалім:</b> Электронды журнал толтыру, ҚМЖ сақтау, оқушыларға тапсырма беру және Sana AI арқылы сабақ жоспарын оңай құру.
+                    <br><b>👨‍🎓 Оқушы:</b> Өз бағаларын көру, үзіліс уақыты көрсетілген сабақ кестесін білу, мұғалімнен берілген тапсырмаларды орындау.</p>
+            </div>
+
+            <div class="info-card">
+                <h2 data-t="advantages"><i class="fas fa-star"></i> Платформаның артықшылықтары</h2>
+                <ul data-t="adv_list">
+                    <li><i class="fas fa-check-circle"></i> Барлығы бір жерде: Журнал, Кесте, ҚМЖ және Тапсырмалар.</li>
+                    <li><i class="fas fa-check-circle"></i> Sana AI: Сұрақтарыңызға жауап беретін жеке жасанды интеллект.</li>
+                    <li><i class="fas fa-check-circle"></i> Интерактивті Кездейсоқ таңдау (Randomizer) құралы мұғалімдер үшін.</li>
+                    <li><i class="fas fa-check-circle"></i> Заманауи, жылдам және қолдануға өте ыңғайлы интерфейс.</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2 data-t="why_us"><i class="fas fa-rocket"></i> Неге бізді таңдау керек?</h2>
+                <p data-t="why_us_text">Біз білім беру саласын цифрландыруды мақсат еттік. EduSana арқылы сіз қағазбастылықтан арылып, алтын уақытыңызды үнемдейсіз. Басқа платформаларға қарағанда, біздің жүйе жылдам жұмыс істейді, артық жарнамасыз және әр қолданушының рөліне қарай бейімделген (индивидуалды). Оқу үрдісін бізбен бірге заманауи деңгейге көтеріңіз!</p>
+            </div>
+            
+            <p style="opacity: 0.6; margin-top: 20px; font-weight: bold;">©️ 2026 EduSana Pro. Барлық құқықтар қорғалған.</p>
+        </section>
+    </div>
+
+    <!-- AUTH OVERLAY өзгеріссіз қалды (логика бірдей) -->
+    <div class="auth-overlay" id="auth-overlay">
+        <div class="auth-card animate__animated animate__zoomIn">
+            <div id="auth-main-panel">
+                <h2 id="auth-title" style="color: var(--primary); margin-bottom: 25px; font-size: 2rem;">Кіру</h2>
+                
+                <div id="role-select" class="role-radio-group">
+                    <label>
+                        <input type="radio" name="user-role" value="Директор/Завуч" style="display:none;" onchange="updateAuthFields()">
+                        <div class="role-badge">👨‍💼 <span data-t="role_dir">Директор</span></div>
+                    </label>
+                    <label>
+                        <input type="radio" name="user-role" value="Мұғалім" checked style="display:none;" onchange="updateAuthFields()">
+                        <div class="role-badge">👨‍🏫 <span data-t="teacher">Мұғалім</span></div>
+                    </label>
+                    <label>
+                        <input type="radio" name="user-role" value="Оқушы" style="display:none;" onchange="updateAuthFields()">
+                        <div class="role-badge">👨‍🎓 <span data-t="student">Оқушы</span></div>
+                    </label>
+                </div>
+
+                <input type="text" id="reg-name-input" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; display:none; border-radius: 12px; font-size:14px; text-align: left; padding-left: 15px;" placeholder="Аты-жөніңіз">
+                
+                <select id="reg-student-class" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; display:none; border-radius: 12px; text-align: left; padding-left: 15px;" onchange="populateStudentNames()">
+                    <option value="">Сыныпты таңдаңыз</option>
+                </select>
+                <select id="reg-student-name" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; display:none; border-radius: 12px; text-align: left; padding-left: 15px;">
+                    <option value="">Өз есіміңізді таңдаңыз</option>
+                </select>
+
+                <input type="text" id="reg-teacher-subject" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; display:none; border-radius: 12px; font-size:14px; text-align: left; padding-left: 15px;" placeholder="Қай пәннен бересіз?">
+                <input type="text" id="reg-teacher-classes" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; display:none; border-radius: 12px; font-size:14px; text-align: left; padding-left: 15px;" placeholder="Қай сыныптар? (мысалы: 5А, 6Б)">
+
+                <input type="text" id="user-email" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; border-radius: 12px; font-size:14px; text-align: left; padding-left: 15px;" placeholder="Email немесе Тел номер">
+                <input type="password" id="user-pass" class="inp-grade" style="width:100%; height:50px; margin-bottom:5px; border-radius: 12px; font-size:14px; text-align: left; padding-left: 15px;" placeholder="Құпия сөз (кемі 6 таңба)">
+                
+                <p id="forgot-link" onclick="openForgotPass()" style="font-size:13px; color:var(--primary); cursor:pointer; text-align:right; margin-bottom:20px; font-weight:bold;">Құпия сөзді ұмыттыңыз ба?</p>
+                
+                <button class="btn btn-primary" style="width:100%; height: 50px; font-size: 1.1rem; border-radius: 12px;" onclick="handleAuth()" data-t="continue">Жалғастыру</button>
+                <p onclick="closeAuth()" style="margin-top:20px; cursor:pointer; color:#e74c3c; font-weight:bold; letter-spacing: 1px;" data-t="close">ЖАБУ</p>
+            </div>
+
+            <div id="forgot-panel" style="display:none;">
+                <h2 style="font-size: 1.5rem">Құпия сөзді жаңарту</h2><br>
+                <input type="text" id="forgot-email" class="inp-grade" style="width:100%; height:45px; margin-bottom:15px; text-align:left; padding-left:15px;" placeholder="Email / Телефон">
+                <button class="btn btn-primary" style="width:100%; margin-bottom:10px;" onclick="sendResetCode()">Код жіберу</button>
+                <p onclick="backToAuth()" style="cursor:pointer; color:red; margin-top:10px; font-weight:bold;">Кері қайту</p>
+            </div>
+
+            <div id="reset-panel" style="display:none;">
+                <h2 style="font-size: 1.5rem">Жаңа құпия сөз</h2><br>
+                <p style="font-size:12px; color:green; margin-bottom:10px;">Код жіберілді! <b>(Код: 1234)</b></p>
+                <input type="text" id="reset-code" class="inp-grade" style="width:100%; height:45px; margin-bottom:15px; text-align:center;" placeholder="4-санды код">
+                <input type="password" id="new-pass" class="inp-grade" style="width:100%; height:45px; margin-bottom:15px; text-align:left; padding-left:15px;" placeholder="Жаңа құпия сөз">
+                <button class="btn btn-primary" style="width:100%; margin-bottom:10px;" onclick="saveNewPass()">Сақтау және Кіру</button>
+                <p onclick="backToAuth()" style="cursor:pointer; color:red; font-weight:bold;">Кері қайту</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-screen">
+        <aside class="sidebar" id="sidebar">
+            <h2 style="color:var(--primary); display:flex; justify-content:space-between; margin-bottom: 30px; align-items:center;">
+                <span style="font-family: 'Comfortaa', cursive; font-weight:bold; font-size: 1.8rem;">EduSana</span> 
+                <i class="fas fa-times" style="cursor:pointer; color:#333; display:none; font-size:1.5rem;" id="close-burger" onclick="toggleBurger()"></i>
+            </h2>
+            <div class="nav-link active" id="nav-profile" onclick="nav('profile', this)"><i class="fas fa-user"></i> <span data-t="m_profile">Профиль</span></div>
+            <div class="nav-link" id="nav-journal" onclick="nav('journal', this)"><i class="fas fa-table"></i> <span data-t="m_journal" id="sidebar-journal-text">Журнал</span></div>
+            <div class="nav-link" id="nav-tasks" onclick="nav('tasks', this)"><i class="fas fa-tasks"></i> <span data-t="m_tasks">Тапсырмалар</span></div>
+            
+            <div class="nav-link" id="nav-random" onclick="nav('random', this)"><i class="fas fa-dice"></i> <span data-t="m_random">Кездейсоқ таңдау</span></div>
+            
+            <div class="nav-link" id="nav-files" onclick="nav('files', this)"><i class="fas fa-folder-open"></i> <span data-t="m_files">ҚМЖ Қоймасы</span></div>
+            <div class="nav-link" id="nav-ai" onclick="nav('ai', this)"><i class="fas fa-robot"></i> <span data-t="m_ai">Sana AI</span></div>
+            <div class="nav-link" id="nav-platforms" onclick="nav('platforms', this)"><i class="fas fa-rocket"></i> <span data-t="m_platforms">Платформалар</span></div>
+            <div class="nav-link" id="nav-schedule" onclick="nav('schedule', this)"><i class="fas fa-calendar-alt"></i> <span data-t="m_sched">Кесте</span></div>
+            <div class="nav-link" id="nav-chat" onclick="nav('chat', this)"><i class="fas fa-comments"></i> <span data-t="m_chat">Чат</span></div>
+            
+            <div class="nav-link" id="nav-author" onclick="nav('author', this)"><i class="fas fa-info-circle"></i> <span data-t="m_author">Автор</span></div>
+            
+            <div style="margin-top: 40px; padding-bottom: 20px;">
+                <select id="lang-switch" onchange="switchLang(this.value)" class="btn" style="width:100%; background:#f1f2f6; padding: 12px; margin-bottom: 15px; text-align:center;">
+                    <option value="kz">Қазақша</option>
+                    <option value="ru">Русский</option>
+                </select>
+                <button class="btn" id="btn-logout" style="width:100%; background:#ff7675; color:white;" onclick="logoutAndReset()" data-t="logout">Шығу</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <div style="display:flex; align-items:center; gap: 20px;">
+                    <div id="burger" style="cursor:pointer; z-index:2000; color: var(--primary);" onclick="toggleBurger()"><i class="fas fa-bars fa-2x"></i></div>
+                    <h2 id="page-title" style="font-size: 1.8rem;">Профиль</h2>
+                </div>
+                <button onclick="toggleDark()" class="btn" style="border-radius: 50%; width: 50px; height: 50px; padding: 0; background: var(--card); color: var(--text); box-shadow: 0 5px 15px rgba(0,0,0,0.05);"><i class="fas fa-moon fa-lg"></i></button>
+            </header>
+            <div id="content-view"></div>
+        </main>
+    </div>
+
+    <script>
+        const langPack = {
+            kz: { 
+                m_profile: "Профиль", m_journal: "Журнал", m_files: "ҚМЖ Қоймасы", m_ai: "Sana AI", m_sched: "Кесте", m_platforms: "Платформалар", m_tasks: "Тапсырмалар", m_chat: "Жалпы Чат", m_random: "Кездейсоқ таңдау", m_author: "Сайт авторы",
+                excel_btn: "Excel-ге жүктеу", word_btn: "Word-қа жүктеу", select_class: "Сыныпты таңдаңыз", name_col: "Оқушы есімі", mark_col: "Баға", 
+                splash: "Мұғалімдер, директорлар мен оқушыларға арналған ақылды платформа",
+                who_for: "<i class='fas fa-users'></i> Кімдерге арналған?",
+                who_for_text: "Бұл платформа мектептің барлық буынына арналған біртұтас экожүйе:<br><br><b>👨‍💼 Директор / Завуч:</b> Мектептің толық статистикасын, мұғалімдердің жүктемесін, журналдар мен сабақ жоспарларын бақылауға арналған құрал.<br><b>👨‍🏫 Мұғалім:</b> Электронды журнал толтыру, ҚМЖ сақтау, оқушыларға тапсырма беру және Sana AI арқылы сабақ жоспарын оңай құру.<br><b>👨‍🎓 Оқушы:</b> Өз бағаларын көру, үзіліс уақыты көрсетілген сабақ кестесін білу, мұғалімнен берілген тапсырмаларды орындау.",
+                advantages: "<i class='fas fa-star'></i> Платформаның артықшылықтары",
+                adv_list: "<li><i class='fas fa-check-circle'></i> Барлығы бір жерде: Журнал, Кесте, ҚМЖ және Тапсырмалар.</li><li><i class='fas fa-check-circle'></i> Sana AI: Сұрақтарыңызға жауап беретін жеке жасанды интеллект.</li><li><i class='fas fa-check-circle'></i> Интерактивті Кездейсоқ таңдау (Randomizer) құралы мұғалімдер үшін.</li><li><i class='fas fa-check-circle'></i> Заманауи, жылдам және қолдануға өте ыңғайлы интерфейс.</li>",
+                why_us: "<i class='fas fa-rocket'></i> Неге бізді таңдау керек?",
+                why_us_text: "Біз білім беру саласын цифрландыруды мақсат еттік. EduSana арқылы сіз қағазбастылықтан арылып, алтын уақытыңызды үнемдейсіз. Басқа платформаларға қарағанда, біздің жүйе жылдам жұмыс істейді, артық жарнамасыз және әр қолданушының рөліне қарай бейімделген (индивидуалды). Оқу үрдісін бізбен бірге заманауи деңгейге көтеріңіз!",
+                role_dir: "Директор/Завуч", teacher: "Мұғалім", student: "Оқушы",
+                login: "Кіру", reg: "Тіркелу", close: "Жабу", continue: "Жалғастыру", logout: "Шығу", ai_ph: "Сұрақ қойыңыз...", plat_title: "Пайдалы платформалар 🚀",
+                add_task_title: "сыныбына тапсырма қосу", task_title_ph: "Тапсырма тақырыбы", task_desc_ph: "Тапсырма мазмұны", btn_upload: "Жүктеу",
+                quarter: "тоқсан", class_of: "сыныбының", tasks_of: "тапсырмалары", no_tasks: "Бұл тоқсанда тапсырма жоқ.", date_lbl: "Күні", my_grades: "Менің бағаларым", class_word: "сыныбы",
+                btn_back: "Артқа", err_login: "Мәліметтер қате немесе рөл дұрыс таңдалмаған!", chat_ph: "Хабарлама жазыңыз...", chat_title: "Мектептің жалпы чаты",
+                sel_subj: "Пәнді таңдаңыз:"
+            },
+            ru: { 
+                m_profile: "Профиль", m_journal: "Журнал", m_files: "База КСП", m_ai: "Sana AI", m_sched: "Расписание", m_platforms: "Платформы", m_tasks: "Задания", m_chat: "Общий Чат", m_random: "Случайный выбор", m_author: "Автор сайта",
+                excel_btn: "Скачать Excel", word_btn: "Скачать Word", select_class: "Выберите класс", name_col: "Имя ученика", mark_col: "Оценка", 
+                splash: "Умная платформа для учителей, директоров и учеников",
+                who_for: "<i class='fas fa-users'></i> Для кого?",
+                who_for_text: "Платформа — это единая экосистема для всей школы:<br><br><b>👨‍💼 Директор / Завуч:</b> Инструмент для контроля статистики, нагрузки учителей, журналов и планов уроков.<br><b>👨‍🏫 Учитель:</b> Электронный журнал, хранение КСП, задания ученикам и ИИ Sana AI для планов.<br><b>👨‍🎓 Ученик:</b> Просмотр своих оценок, расписание с переменами, выполнение заданий от учителей.",
+                advantages: "<i class='fas fa-star'></i> Преимущества платформы",
+                adv_list: "<li><i class='fas fa-check-circle'></i> Всё в одном месте: Журнал, Расписание, КСП и Задания.</li><li><i class='fas fa-check-circle'></i> Sana AI: Личный искусственный интеллект для ответов.</li><li><i class='fas fa-check-circle'></i> Интерактивный Рандомайзер для учителей.</li><li><i class='fas fa-check-circle'></i> Современный и быстрый интерфейс.</li>",
+                why_us: "<i class='fas fa-rocket'></i> Почему стоит выбрать нас?",
+                why_us_text: "Наша цель — цифровизация образования. EduSana избавит от бумажной рутины и сэкономит время. Платформа быстрая, без рекламы и адаптирована под каждого пользователя. Поднимите процесс обучения на новый уровень вместе с нами!",
+                role_dir: "Директор/Завуч", teacher: "Учитель", student: "Ученик",
+                login: "Войти", reg: "Регистрация", close: "Закрыть", continue: "Продолжить", logout: "Выйти", ai_ph: "Задайте вопрос...", plat_title: "Полезные платформы 🚀",
+                add_task_title: "Добавить задание", task_title_ph: "Тема задания", task_desc_ph: "Описание задания", btn_upload: "Загрузить",
+                quarter: "четверть", class_of: "Задания класса", tasks_of: "", no_tasks: "Нет заданий.", date_lbl: "Дата", my_grades: "Мои оценки", class_word: "класс",
+                btn_back: "Назад", err_login: "Неверные данные или роль!", chat_ph: "Сообщение...", chat_title: "Школьный чат",
+                sel_subj: "Выберите предмет:"
+            }
+        };
+        
+        let curLang = 'kz';
+        const baseSubjects = ["Математика", "Қазақ тілі", "Орыс тілі", "Ағылшын тілі", "Физика", "Химия", "Биология", "Тарих", "Информатика", "Дене шынықтыру", "География"];
+        
+        let currentSubject = '';
+        let currentClass = '';
+        let currentQuarter = 1; 
+        let selectedTaskClass = '';
+        let currentTaskQuarter = 1; 
+        let currentUserInfo = { name: "Қонақ", role: "Мұғалім", allowedClasses: [] };
+
+        let classes = [];
+        for (let i = 1; i <= 11; i++) { ['А', 'Ә', 'Б', 'В'].forEach(sec => classes.push(i + sec)); }
+
+        const firstNames = ["Абзал", "Айгерім", "Бауыржан", "Бекарыс", "Гүлназ", "Дамир", "Еркебұлан", "Жансая", "Зере", "Илияс", "Кәусар", "Ләззат", "Мұрат", "Нұрлан", "Олжас", "Пәкизат", "Рауан", "Сәния", "Талғат", "Ұлан"];
+        const lastNames = ["Ахметов", "Бақытбек", "Серіков", "Жұмабаев", "Нұртас", "Төлеген", "Қанат", "Мұса", "Исатай", "Бөкей", "Абай", "Құрман", "Рақым", "Болат", "Смағұл", "Тұрсын", "Мәлік", "Әшім", "Дәулет", "Есім"];
+
+        let usersDB = JSON.parse(localStorage.getItem('edusana_users')) || [];
+        let authMode = 'login'; 
+
+        // Жаңа құрылым: studentDB[c][studentIdx].subjects[subj][quarter]
+        let studentDB = JSON.parse(localStorage.getItem('edusana_db_v2')) || {};
+        let tasksDB = JSON.parse(localStorage.getItem('edusana_tasks_v2')) || {};
+        let kmjDB = JSON.parse(localStorage.getItem('edusana_kmj_v2')) || {};
+        let chatDB = JSON.parse(localStorage.getItem('edusana_chat')) || [];
+
+        function createEmptyQuarter() { return { w: Array(5).fill(''), bjb1: '', bjb2: '', tjb: '' }; } // Бастапқыда 5 апта
+
+        let dbUpdated = false;
+        classes.forEach(c => {
+            if (!studentDB[c]) {
+                studentDB[c] = [];
+                for(let i=0; i<20; i++) {
+                    let fn = firstNames[Math.floor(Math.random() * firstNames.length)];
+                    let ln = lastNames[Math.floor(Math.random() * lastNames.length)];
+                    studentDB[c].push({ name: `${fn} ${ln}`, subjects: {} });
+                }
+                dbUpdated = true;
+            }
+        });
+        if (dbUpdated) localStorage.setItem('edusana_db_v2', JSON.stringify(studentDB));
+
+        // Кеңейтілген деректерді тексеру (пән бойынша)
+        function ensureSubjectDataExists(c, subj) {
+            let changed = false;
+            studentDB[c].forEach(s => {
+                if(!s.subjects) s.subjects = {};
+                if(!s.subjects[subj]) {
+                    s.subjects[subj] = { 1: createEmptyQuarter(), 2: createEmptyQuarter(), 3: createEmptyQuarter(), 4: createEmptyQuarter() };
+                    changed = true;
+                }
+            });
+            if(changed) localStorage.setItem('edusana_db_v2', JSON.stringify(studentDB));
+        }
+
+        // Scroll Animation for Splash
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.info-card').forEach(card => observer.observe(card));
+
+        function toggleBurger() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+            if(window.innerWidth <= 900) { document.getElementById('close-burger').style.display = sidebar.classList.contains('active') ? 'block' : 'none'; }
+        }
+
+        function switchLang(lang) {
+            curLang = lang;
+            document.getElementById('top-lang').value = lang;
+            document.getElementById('lang-switch').value = lang;
+            document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = langPack[curLang][el.getAttribute('data-t')]; });
+            const activeNav = document.querySelector('.nav-link.active'); 
+            if(activeNav && document.getElementById('app-screen').style.display === 'flex') nav(activeNav.id.replace('nav-', ''), activeNav);
+        }
+
+        function openAuth(type) { 
+            authMode = type;
+            document.getElementById('auth-overlay').style.display = 'flex'; 
+            document.getElementById('auth-main-panel').style.display = 'block';
+            document.getElementById('forgot-panel').style.display = 'none';
+            document.getElementById('reset-panel').style.display = 'none';
+
+            document.getElementById('auth-title').innerText = langPack[curLang][type];
+            document.querySelector('.role-radio-group').style.display = 'flex';
+            document.getElementById('forgot-link').style.display = (type === 'login') ? 'block' : 'none';
+            
+            if(document.getElementById('reg-student-class').options.length <= 1) {
+                classes.forEach(c => {
+                    let opt = document.createElement('option'); opt.value = c; opt.innerText = c;
+                    document.getElementById('reg-student-class').appendChild(opt);
+                });
+            }
+            updateAuthFields();
+        }
+        
+        function closeAuth() { document.getElementById('auth-overlay').style.display = 'none'; }
+
+        function updateAuthFields() {
+            let role = document.querySelector('input[name="user-role"]:checked').value;
+            let isReg = (authMode === 'reg');
+            
+            document.getElementById('reg-name-input').style.display = (isReg && role !== 'Оқушы') ? 'block' : 'none';
+            document.getElementById('reg-student-class').style.display = (isReg && role === 'Оқушы') ? 'block' : 'none';
+            document.getElementById('reg-student-name').style.display = (isReg && role === 'Оқушы') ? 'block' : 'none';
+            document.getElementById('reg-teacher-subject').style.display = (isReg && role === 'Мұғалім') ? 'block' : 'none';
+            document.getElementById('reg-teacher-classes').style.display = (isReg && role === 'Мұғалім') ? 'block' : 'none';
+        }
+
+        function populateStudentNames() {
+            let c = document.getElementById('reg-student-class').value;
+            let nameSel = document.getElementById('reg-student-name');
+            nameSel.innerHTML = '<option value="">Өз есіміңізді таңдаңыз</option>';
+            if(c && studentDB[c]) {
+                studentDB[c].forEach(s => { let opt = document.createElement('option'); opt.value = s.name; opt.innerText = s.name; nameSel.appendChild(opt); });
+            }
+        }
+
+        function handleAuth() {
+            const email = document.getElementById('user-email').value;
+            const pass = document.getElementById('user-pass').value;
+            const role = document.querySelector('input[name="user-role"]:checked').value;
+            
+            if (authMode === 'reg') {
+                let name = "", allowedClasses = [];
+                if (role === 'Оқушы') {
+                    let c = document.getElementById('reg-student-class').value;
+                    name = document.getElementById('reg-student-name').value;
+                    if(!c || !name) return alert("Сынып пен есімді таңдаңыз!");
+                    allowedClasses = [c];
+                } else {
+                    name = document.getElementById('reg-name-input').value;
+                    if(!name) return alert("Аты-жөніңізді жазыңыз!");
+                    if(role === 'Мұғалім') {
+                        let tClasses = document.getElementById('reg-teacher-classes').value;
+                        if(tClasses) allowedClasses = tClasses.split(',').map(s => s.trim());
+                    }
+                }
+
+                if (!email || !pass) return alert("Барлық мәліметтерді толтырыңыз!");
+                if (pass.length < 6) return alert("Құпия сөз кемінде 6 таңбадан тұруы тиіс!");
+                if (usersDB.some(u => u.email === email)) return alert("Бұл логин жүйеде тіркелген!");
+                
+                usersDB.push({ name, email, pass, role, allowedClasses });
+                localStorage.setItem('edusana_users', JSON.stringify(usersDB));
+                alert("Сәтті тіркелдіңіз! Енді жүйеге кіріңіз.");
+                
+                openAuth('login');
+                document.getElementById('user-pass').value = '';
+            } else {
+                const user = usersDB.find(u => u.email === email && u.pass === pass && u.role === role);
+                if (!user) { alert(langPack[curLang].err_login); return; }
+
+                document.getElementById('landing-page').style.top = '-100%';
+                document.getElementById('app-screen').style.display = 'flex';
+                closeAuth();
+                
+                currentUserInfo = { name: user.name, role: user.role, allowedClasses: user.allowedClasses || [] };
+                
+                document.getElementById('nav-files').style.display = (role === 'Оқушы') ? 'none' : 'flex';
+                document.getElementById('nav-chat').style.display = (role === 'Оқушы') ? 'none' : 'flex';
+                document.getElementById('nav-random').style.display = (role === 'Оқушы') ? 'none' : 'flex';
+                document.getElementById('sidebar-journal-text').innerText = (role === 'Оқушы') ? langPack[curLang].my_grades : langPack[curLang].m_journal;
+
+                nav('profile');
+            }
+        }
+
+        function renderSubjectSelector(callbackName) {
+            let html = `<div style="background:var(--card); padding:20px; border-radius:20px; margin-bottom:20px; box-shadow:0 5px 15px rgba(0,0,0,0.05);"><h3 style="margin-bottom:15px; color:var(--primary);"><i class="fas fa-book"></i> ${langPack[curLang].sel_subj}</h3><div style="display:flex; flex-wrap:wrap; gap:10px;">`;
+            baseSubjects.forEach(s => {
+                let activeCls = (currentSubject === s) ? 'active' : '';
+                html += `<button class="btn btn-outline ${activeCls}" onclick="${callbackName}('${s}')">${s}</button>`;
+            });
+            html += `</div></div>`;
+            return html;
+        }
+
+        function nav(page, el) {
+            if(el) { document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active')); el.classList.add('active'); }
+            if(window.innerWidth <= 900) { document.getElementById('sidebar').classList.remove('active'); document.getElementById('close-burger').style.display = 'none'; }
+
+            const view = document.getElementById('content-view');
+            let pageTitleText = langPack[curLang]['m_'+page];
+            if(page === 'journal' && currentUserInfo.role === 'Оқушы') pageTitleText = langPack[curLang].my_grades;
+            document.getElementById('page-title').innerText = pageTitleText || page.toUpperCase();
+            view.innerHTML = "";
+
+            if(page === 'profile') {
+                let icon = 'fa-user-graduate'; if(currentUserInfo.role === 'Мұғалім') icon = 'fa-chalkboard-teacher'; else if(currentUserInfo.role === 'Директор/Завуч') icon = 'fa-user-tie';
+                view.innerHTML = `<div class="animate__animated animate__fadeIn" style="background:var(--card); padding:40px; border-radius:30px; text-align:center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 500px; margin: 0 auto;">
+                    <div style="width:140px; height:140px; background:linear-gradient(135deg, #f1f2f6, #fff); border-radius:50%; margin: 0 auto 25px; border:6px solid var(--primary); display:flex; align-items:center; justify-content:center; font-size:50px; box-shadow: 0 10px 20px rgba(72,52,212,0.2);"><i class="fas ${icon}" style="color:var(--primary)"></i></div>
+                    <h2 style="font-size: 2rem; color: var(--text);">${currentUserInfo.name}</h2>
+                    <p style="color:var(--secondary); font-weight:bold; margin-top:10px; font-size: 1.1rem; letter-spacing: 1px;">${currentUserInfo.role.toUpperCase()}</p>
+                </div>`;
+            } 
+            else if(page === 'journal') {
+                view.innerHTML = renderSubjectSelector('selectSubjectForJournal') + `<div id="journal-main-area"></div>`;
+                if(currentSubject) selectSubjectForJournal(currentSubject);
+            } 
+            else if(page === 'tasks') {
+                view.innerHTML = renderSubjectSelector('selectSubjectForTasks') + `<div id="tasks-main-area"></div>`;
+                if(currentSubject) selectSubjectForTasks(currentSubject);
+            } 
+            else if(page === 'files') {
+                view.innerHTML = renderSubjectSelector('selectSubjectForKMJ') + `<div id="kmj-main-area"></div>`;
+                if(currentSubject) selectSubjectForKMJ(currentSubject);
+            } 
+            else if(page === 'ai') {
+                view.innerHTML = `<div class="animate__animated animate__fadeIn" style="background:var(--card); padding:30px; border-radius:30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div id="chat-area"><div class="msg bot">Сәлем! Мен <b>Sana AI</b> - виртуалды көмекшіңізбін. Сабақ жоспары, терминдер немесе кез келген сұрақ бойынша көмектесе аламын!</div></div>
+                    <div style="display:flex; gap:15px; margin-top: 10px;">
+                        <input type="text" id="ai-input" class="inp-grade" style="flex:1; height:55px; text-align:left; padding-left:20px; font-weight:normal;" placeholder="${langPack[curLang].ai_ph}" onkeypress="if(event.key === 'Enter') askAI()">
+                        <button class="btn btn-primary" style="padding: 0 30px; border-radius: 12px;" onclick="askAI()">Жіберу <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>`;
+            } 
+            else if(page === 'platforms') {
+                view.innerHTML = `<div class="ai-section animate__animated animate__fadeIn"><div class="platforms-bg"></div><h2 style="color:white; position:relative; z-index:1; margin-bottom:40px; font-size: 2rem;">${langPack[curLang].plat_title}</h2>
+                <div class="apps">
+                    <a href="https://chat.openai.com" target="_blank" class="card-platform"><span>ChatGPT</span></a>
+                    <a href="https://gemini.google.com" target="_blank" class="card-platform"><span>Gemini</span></a>
+                    <a href="https://www.canva.com" target="_blank" class="card-platform"><span>Canva</span></a>
+                    <a href="https://quizizz.com/" target="_blank" class="card-platform"><span>Quizizz</span></a>
+                    <a href="https://kahoot.com/" target="_blank" class="card-platform"><span>Kahoot!</span></a>
+                </div></div>`;
+            } 
+            else if(page === 'schedule') {
+                let schedClasses = (currentUserInfo.role === 'Оқушы') ? currentUserInfo.allowedClasses : classes;
+                if(schedClasses.length === 0) schedClasses = classes; // fallback
+                let classBtns = schedClasses.map(c => `<button class="btn btn-outline" style="padding:8px 15px; margin:5px; font-size:13px;" onclick="loadClassSchedule('${c}')">${c}</button>`).join('');
+                view.innerHTML = `<div style="margin-bottom:20px; background: var(--card); padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);"><h4 style="margin-bottom: 15px;">Сыныпты таңдаңыз:</h4><div style="display:flex; flex-wrap:wrap; gap:5px;">${classBtns}</div></div>
+                    <h3 id="sched-class-title" style="margin-bottom:20px; color:var(--primary); font-size: 1.5rem;"></h3>
+                    <div id="sched-render" class="animate__animated animate__fadeIn"></div>`;
+                loadClassSchedule(schedClasses[0]); 
+            }
+            else if(page === 'chat') {
+                view.innerHTML = `<div class="t-chat-container animate__animated animate__fadeIn"><div style="background:linear-gradient(135deg, var(--primary), var(--secondary)); color:white; padding:20px; font-weight:bold; text-align:center; font-size: 1.2rem; letter-spacing: 1px;"><i class="fas fa-users"></i> ${langPack[curLang].chat_title}</div><div class="t-chat-messages" id="t-chat-box"></div><div class="t-chat-input-area" style="padding:20px; background:var(--card); display:flex; gap:15px; border-top:1px solid #eee;"><input type="text" id="t-chat-input" class="inp-grade" style="flex:1; height:50px; text-align:left; padding-left:20px; font-weight: normal;" placeholder="${langPack[curLang].chat_ph}" onkeypress="if(event.key === 'Enter') sendChatMessage()"><button class="btn btn-primary" style="padding: 0 25px;" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button></div></div>`;
+                loadChatMessages();
+            }
+            else if(page === 'random') {
+                let classOptions = `<option value="">Сыныпты таңдаңыз</option>` + classes.map(c => `<option value="${c}">${c}</option>`).join('');
+                view.innerHTML = `<div class="randomizer-box animate__animated animate__zoomIn"><h2 style="margin-bottom: 30px; color: var(--primary); font-size: 2rem;"><i class="fas fa-magic"></i> Кім тақтаға шығады?</h2><select id="rand-class-sel" class="btn" style="border: 2px solid var(--primary); font-size: 1.2rem; padding: 15px 30px; margin-bottom: 30px; background: transparent; color: var(--text); border-radius: 15px;">${classOptions}</select><br><button class="btn btn-primary" style="font-size: 1.3rem; padding: 18px 50px; border-radius: 50px; box-shadow: 0 10px 20px rgba(72,52,212,0.3);" onclick="startRandomizer()">Кездейсоқ таңдау <i class="fas fa-play"></i></button><div id="rand-result" class="random-result">?</div></div>`;
+            }
+            else if(page === 'author') {
+                view.innerHTML = `<div class="author-wrap animate__animated animate__fadeInUp">
+                        <div class="author-card"><img src="author.jpg" class="author-img" alt="Мұханбек Аянат" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'"><h3 style="color: var(--primary); margin-bottom: 5px;">Мұханбек Аянат Ерболатқызы</h3><p style="color: var(--secondary); font-size: 14px; margin-bottom: 15px; font-weight: bold;">Жобаның негізін қалаушы / Программист</p><p style="color: #666; line-height: 1.6;">EduSana платформасының авторы. Білім беру саласын цифрландыру және мұғалімдердің жұмысын жеңілдету мақсатында осы жобаны ойлап таптым.</p></div>
+                        <div class="author-card"><img src="teacher.jpg" class="author-img" alt="Эльвира Тулепбергеновна" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2922/2922510.png'"><h3 style="color: var(--primary); margin-bottom: 5px;">Адылбекова Эльвира Тулепбергеновна</h3><p style="color: var(--secondary); font-size: 14px; margin-bottom: 15px; font-weight: bold;">Жоба жетекшісі / Ғылыми жетекші</p><div style="text-align: left; font-size: 0.95rem; line-height: 1.6; color: #666;"><p><b>Білімі:</b> Жоғары, математик-информатик, Қазақ мемлекеттік қыздар педагогикалық институты (1996), педагогика ғылымдарының кандидаты (2009).</p><p style="margin-top: 10px;"><b>Оқытатын пәндері:</b> Сандық әдістер, есептеу әдістері, интернетте программа құру, Web-программалау...</p></div></div>
+                    </div>`;
+            }
+        }
+
+        // ЖУРНАЛ ЛОГИКАСЫ
+        function selectSubjectForJournal(subj) {
+            currentSubject = subj; nav('journal'); // Re-render to show active button
+            let visibleClasses = classes;
+            if(currentUserInfo.role === 'Оқушы' || (currentUserInfo.role === 'Мұғалім' && currentUserInfo.allowedClasses.length > 0)) {
+                visibleClasses = classes.filter(c => currentUserInfo.allowedClasses.includes(c));
+                if(visibleClasses.length === 0) visibleClasses = classes; 
+            }
+            
+            let classBtns = visibleClasses.map(c => `<button class="btn btn-outline" style="padding:8px 15px; font-size: 13px;" onclick="loadJournal('${c}', 1)">${c}</button>`).join('');
+            
+            document.getElementById('journal-main-area').innerHTML = `
+                <div style="margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; padding: 20px; background: var(--card); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div style="width: 100%; font-weight: bold; margin-bottom: 10px;">Сыныпты таңдаңыз:</div>
+                    ${classBtns}
+                </div>
+                <div id="journal-render" class="journal-box animate__animated animate__fadeIn" style="display:none;"></div>`;
+            
+            if(visibleClasses.length === 1) loadJournal(visibleClasses[0], 1);
+        }
+
+        function addWeek() {
+            ensureSubjectDataExists(currentClass, currentSubject);
+            studentDB[currentClass].forEach(s => { s.subjects[currentSubject][currentQuarter].w.push(''); });
+            localStorage.setItem('edusana_db_v2', JSON.stringify(studentDB));
+            loadJournal(currentClass, currentQuarter);
+        }
+
+        function loadJournal(c, q = currentQuarter) {
+            currentClass = c; currentQuarter = q;
+            ensureSubjectDataExists(c, currentSubject);
+            
+            const box = document.getElementById('journal-render');
+            box.style.display = 'block';
+            
+            let quarterBtns = `<div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap: wrap;">`;
+            for(let i=1; i<=4; i++){ quarterBtns += `<button class="btn ${currentQuarter === i ? 'btn-primary' : 'btn-outline'}" onclick="loadJournal('${c}', ${i})">${i}-${langPack[curLang].quarter}</button>`; }
+            quarterBtns += `</div>`;
+
+            let exportBtns = `<div class="export-btns">
+                <button class="btn" style="background:#2ecc71; color:white;" onclick="exportJournal('excel')"><i class="fas fa-file-excel"></i> Excel-ге жүктеу</button>
+                <button class="btn" style="background:#3498db; color:white;" onclick="exportJournal('word')"><i class="fas fa-file-word"></i> Word-қа жүктеу</button>
+            </div>`;
+
+            const isStudent = currentUserInfo.role === 'Оқушы';
+            let refWeeksCount = studentDB[c][0].subjects[currentSubject][currentQuarter].w.length;
+
+            let table = `<table><thead><tr><th>${langPack[curLang].name_col}</th>`;
+            for(let i=0; i<refWeeksCount; i++) table += `<th>Апта ${i+1}<br><small>(макс 10)</small></th>`;
+            if(!isStudent) table += `<th><button class="btn btn-primary" style="padding:5px 10px; font-size:12px; border-radius:5px;" onclick="addWeek()">+ Апта</button></th>`;
+            
+            table += `<th>БЖБ 1<br><small>(макс 20)</small></th><th>БЖБ 2<br><small>(макс 20)</small></th><th>ТЖБ<br><small>(макс 30)</small></th><th>%</th><th>${langPack[curLang].mark_col}</th>${!isStudent ? '<th>Ата-анаға</th>' : ''}</tr></thead><tbody>`;
+            
+            studentDB[c].forEach((s, idx) => {
+                if (isStudent && s.name !== currentUserInfo.name) return; 
+                let sq = s.subjects[currentSubject][currentQuarter]; 
+                let disabledAttr = isStudent ? 'disabled style="background:#f1f2f6; color:#000; border:none;"' : '';
+
+                let wInputs = sq.w.map((v,i) => {
+                    let isAbsent = (v.toString().toLowerCase() === 'ж'); let bgClass = isAbsent ? 'absent-mark' : '';
+                    return `<td><input ${disabledAttr} type="text" class="inp-grade ${bgClass}" value="${v}" max="10" title="Макс: 10, Келмесе: ж" onchange="updateGr('${c}',${idx},'w',${i},this.value)"></td>`;
+                }).join('');
+
+                let waBtn = !isStudent ? `<td><i class="fab fa-whatsapp wa-btn" onclick="sendWA('${s.name}', '${c}', ${idx})"></i></td>` : '';
+
+                table += `<tr><td style="text-align:left; font-weight:bold;">${s.name}</td>${wInputs}${!isStudent?'<td></td>':''}
+                    <td><input ${disabledAttr} type="number" class="inp-grade" max="20" value="${sq.bjb1}" onchange="updateGr('${c}',${idx},'bjb1',0,this.value)"></td>
+                    <td><input ${disabledAttr} type="number" class="inp-grade" max="20" value="${sq.bjb2}" onchange="updateGr('${c}',${idx},'bjb2',0,this.value)"></td>
+                    <td><input ${disabledAttr} type="number" class="inp-grade" max="30" value="${sq.tjb}" onchange="updateGr('${c}',${idx},'tjb',0,this.value)"></td>
+                    <td id="p-${c}-${idx}" style="font-weight:bold;">0%</td><td id="m-${c}-${idx}">-</td>${waBtn}</tr>`;
+            });
+            table += `</tbody></table>`;
+            box.innerHTML = `<h3 style="margin-bottom:15px; color:var(--primary);">${c} сыныбы | ${currentSubject} | ${currentQuarter}-${langPack[curLang].quarter}</h3>` + quarterBtns + (!isStudent ? exportBtns : '') + table;
+            studentDB[c].forEach((_,i) => calculate(c,i));
+        }
+
+        function updateGr(c, sIdx, field, wIdx, val) {
+            let sq = studentDB[c][sIdx].subjects[currentSubject][currentQuarter];
+            
+            // Валидация (Макс шектеулер)
+            if(field === 'w' && val.toLowerCase() !== 'ж') {
+                if(Number(val) > 10) val = 10; if(Number(val) < 0) val = 0;
+                sq.w[wIdx] = val !== '' ? val : '';
+            } else if (field === 'w' && val.toLowerCase() === 'ж') {
+                sq.w[wIdx] = 'ж';
+            } else if (field === 'bjb1' || field === 'bjb2') {
+                if(Number(val) > 20) val = 20; if(Number(val) < 0) val = 0; sq[field] = val !== '' ? Number(val) : '';
+            } else if (field === 'tjb') {
+                if(Number(val) > 30) val = 30; if(Number(val) < 0) val = 0; sq[field] = val !== '' ? Number(val) : '';
+            }
+            
+            localStorage.setItem('edusana_db_v2', JSON.stringify(studentDB));
+            if(field === 'w') { loadJournal(c, currentQuarter); } else { calculate(c, sIdx); loadJournal(c, currentQuarter); }
+        }
+
+        function calculate(c, sIdx) {
+            const sq = studentDB[c][sIdx].subjects[currentSubject][currentQuarter];
+            let sumPoints = 0;
+            let totalPossible = 0;
+
+            // Апталық бағалар (әрқайсысы макс 10)
+            sq.w.forEach(v => {
+                let valStr = v.toString().toLowerCase();
+                if (valStr !== '') {
+                    totalPossible += 10; // "ж" қойылса да, мүмкін ұпай өседі
+                    if(valStr !== 'ж' && !isNaN(Number(v))) {
+                        sumPoints += Number(v);
+                    }
+                }
+            });
+
+            // БЖБ / ТЖБ 
+            if(sq.bjb1 !== '') { totalPossible += 20; sumPoints += Number(sq.bjb1); }
+            if(sq.bjb2 !== '') { totalPossible += 20; sumPoints += Number(sq.bjb2); }
+            if(sq.tjb !== '') { totalPossible += 30; sumPoints += Number(sq.tjb); }
+
+            const percent = totalPossible > 0 ? Math.round((sumPoints/totalPossible)*100) : 0; 
+            const pCell = document.getElementById(`p-${c}-${sIdx}`), mCell = document.getElementById(`m-${c}-${sIdx}`);
+            
+            if(!pCell || !mCell) return;
+            
+            pCell.innerText = percent + "%";
+            let mark = "-", colorClass = '';
+            if(totalPossible > 0) {
+                if (percent >= 85) { mark = 5; colorClass = 'grade-5'; } else if (percent >= 65) { mark = 4; colorClass = 'grade-4'; } else if (percent >= 40) { mark = 3; colorClass = 'grade-3'; } else { mark = 2; colorClass = 'grade-2';}
+            }
+            mCell.innerText = mark; mCell.className = colorClass;
+
+            // Save computed for export/wa
+            sq._computedPercent = percent;
+            sq._computedMark = mark;
+        }
+
+        function sendWA(studentName, c, sIdx) {
+            const sq = studentDB[c][sIdx].subjects[currentSubject][currentQuarter];
+            let percent = sq._computedPercent || 0;
+            let mark = sq._computedMark || "-";
+            let teacher = currentUserInfo.name;
+            let msg = `Сәлеметсіз бе! Мен ${studentName} оқушының ${currentSubject} пәнінен беретін мұғалімі ${teacher} боламын. Балаңыз осы тоқсанда ${percent}% жинап, "${mark}" деген баға алды.`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // EXCEL / WORD EXPORT
+        function exportJournal(type) {
+            let csv = '\uFEFFОқушы,';
+            let refW = studentDB[currentClass][0].subjects[currentSubject][currentQuarter].w;
+            refW.forEach((_,i) => csv += `Апта ${i+1},`);
+            csv += 'БЖБ 1,БЖБ 2,ТЖБ,Пайыз %,Баға\n';
+
+            studentDB[currentClass].forEach(s => {
+                let sq = s.subjects[currentSubject][currentQuarter];
+                let row = [s.name, ...sq.w.map(v => v || '-'), sq.bjb1 || '-', sq.bjb2 || '-', sq.tjb || '-', `${sq._computedPercent||0}%`, sq._computedMark||'-'];
+                csv += row.join(',') + '\n';
+            });
+
+            let a = document.createElement('a');
+            let mime = type === 'excel' ? 'text/csv;charset=utf-8' : 'application/msword';
+            let ext = type === 'excel' ? 'csv' : 'doc';
+            a.href = `data:${mime},` + encodeURI(csv);
+            a.download = `Journal_${currentClass}_${currentSubject}.${ext}`;
+            a.click();
+        }
+
+        // ТАПСЫРМАЛАР ЛОГИКАСЫ
+        function selectSubjectForTasks(subj) {
+            currentSubject = subj; nav('tasks');
+            let visClasses = (currentUserInfo.role === 'Оқушы' || (currentUserInfo.role === 'Мұғалім' && currentUserInfo.allowedClasses.length > 0)) ? classes.filter(c => currentUserInfo.allowedClasses.includes(c)) : classes;
+            if(visClasses.length === 0) visClasses = classes;
+            
+            document.getElementById('tasks-main-area').innerHTML = `
+                <div style="margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; background: var(--card); padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div style="width: 100%; font-weight: bold; margin-bottom: 10px;">Сыныпты таңдаңыз:</div>
+                    ${visClasses.map(c => `<button class="btn btn-outline" style="padding:8px 15px; font-size:13px;" onclick="selectClassTasks('${c}', 1)">${c}</button>`).join('')}
+                </div>
+                <div id="tasks-container" style="display:none" class="animate__animated animate__fadeIn">
+                    <div id="task-quarter-btns" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;"></div>
+                    ${currentUserInfo.role !== 'Оқушы' ? `<div style="background:var(--card); padding:30px; border-radius:20px; margin-bottom:30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);"><h3 style="color:var(--primary); margin-bottom:15px;"><i class="fas fa-plus-circle"></i> <span id="task-class-title"></span> жаңа тапсырма</h3><input type="text" id="t-title" class="inp-grade" style="width:100%; height:50px; margin-bottom:15px; text-align:left; padding-left:15px; font-weight:normal;" placeholder="${langPack[curLang].task_title_ph}"><textarea id="t-desc" class="inp-grade" style="width:100%; height:100px; margin-bottom:15px; text-align:left; padding:15px; font-weight:normal;" placeholder="${langPack[curLang].task_desc_ph}"></textarea><button class="btn btn-primary" style="padding: 12px 30px;" onclick="saveTask()"><i class="fas fa-upload"></i> ${langPack[curLang].btn_upload}</button></div>` : ''}
+                    <div id="tasks-list"></div>
+                </div>`;
+            if(visClasses.length === 1) selectClassTasks(visClasses[0], 1);
+        }
+
+        function selectClassTasks(c, q) {
+            selectedTaskClass = c; currentTaskQuarter = q; document.getElementById('tasks-container').style.display = 'block';
+            if(currentUserInfo.role !== 'Оқушы') document.getElementById('task-class-title').innerText = `${c} сыныбына (${currentSubject})`;
+            document.getElementById('task-quarter-btns').innerHTML = [1,2,3,4].map(i => `<button class="btn ${currentTaskQuarter === i ? 'btn-primary' : 'btn-outline'}" onclick="selectClassTasks('${c}', ${i})">${i}-${langPack[curLang].quarter}</button>`).join('');
+            renderClassTasksList();
+        }
+
+        function saveTask() {
+            const title = document.getElementById('t-title').value, desc = document.getElementById('t-desc').value;
+            if(!title) return alert("Тақырыпты толтырыңыз!");
+            if(!tasksDB[currentSubject]) tasksDB[currentSubject] = {};
+            if(!tasksDB[currentSubject][selectedTaskClass]) tasksDB[currentSubject][selectedTaskClass] = { 1:[], 2:[], 3:[], 4:[] };
+            
+            tasksDB[currentSubject][selectedTaskClass][currentTaskQuarter].push({ id: Date.now(), title, desc, date: new Date().toLocaleDateString() }); 
+            localStorage.setItem('edusana_tasks_v2', JSON.stringify(tasksDB)); renderClassTasksList(); 
+            document.getElementById('t-title').value = ''; document.getElementById('t-desc').value = '';
+        }
+
+        function renderClassTasksList() {
+            const list = document.getElementById('tasks-list');
+            let tasks = [];
+            if(tasksDB[currentSubject] && tasksDB[currentSubject][selectedTaskClass]) {
+                tasks = tasksDB[currentSubject][selectedTaskClass][currentTaskQuarter] || [];
+            }
+            
+            list.innerHTML = `<h3 style="margin-bottom:20px; color:var(--text);">${selectedTaskClass} сыныбы | ${currentSubject} | ${currentTaskQuarter}-${langPack[curLang].quarter}:</h3>`;
+            if(tasks.length === 0) { list.innerHTML += `<p style="color:#888; font-style:italic;">${langPack[curLang].no_tasks}</p>`; return; }
+            
+            tasks.forEach((t, idx) => { 
+                list.innerHTML += `<div class="animate__animated animate__fadeInUp" style="background:var(--card); padding:20px; border-radius:15px; margin-bottom:15px; border-left:5px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong style="font-size: 1.1rem; color: var(--primary);">${t.title}</strong> 
+                        ${currentUserInfo.role !== 'Оқушы' ? `<button onclick="deleteTaskItem('${idx}')" class="btn" style="background:#ff7675; color:white; padding: 5px 10px;"><i class="fas fa-trash"></i></button>` : ''}
+                    </div>
+                    <p style="font-size:15px; margin:10px 0; color:#555; line-height:1.5;">${t.desc}</p>
+                    <div style="margin-top:15px; color:#aaa; font-size:12px;"><i class="fas fa-clock"></i> Күні: ${t.date}</div>
+                </div>`; 
+            });
+        }
+        function deleteTaskItem(idx) { 
+            if(confirm("Өшіру?")) { 
+                tasksDB[currentSubject][selectedTaskClass][currentTaskQuarter].splice(idx, 1); 
+                localStorage.setItem('edusana_tasks_v2', JSON.stringify(tasksDB)); 
+                renderClassTasksList(); 
+            } 
+        }
+
+        // ҚМЖ ЛОГИКАСЫ (ФАЙЛДАР)
+        function selectSubjectForKMJ(subj) {
+            currentSubject = subj; nav('files');
+            let classBtns = classes.map(c => `<button class="btn btn-outline" style="padding:8px 15px; font-size:13px;" onclick="openKMJClass('${c}')">${c}</button>`).join('');
+            document.getElementById('kmj-main-area').innerHTML = `
+                <div style="margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; background: var(--card); padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div style="width: 100%; font-weight: bold; margin-bottom: 10px;">Сыныпты таңдаңыз:</div>
+                    ${classBtns}
+                </div>
+                <div id="kmj-class-area" style="display:none;" class="animate__animated animate__fadeIn kmj-container"></div>`;
+        }
+
+        let currentKMJClass = '';
+        let currentKMJQuarter = 1;
+
+        function openKMJClass(c, q=1) {
+            currentKMJClass = c; currentKMJQuarter = q;
+            const area = document.getElementById('kmj-class-area'); area.style.display = 'block';
+            let qBtns = [1,2,3,4].map(i => `<button class="btn ${currentKMJQuarter === i ? 'btn-primary' : 'btn-outline'}" onclick="openKMJClass('${c}', ${i})">${i}-${langPack[curLang].quarter}</button>`).join('');
+            
+            area.innerHTML = `<h3 style="margin-bottom:20px; color:var(--primary);">${c} сыныбы | ${currentSubject}</h3>
+                <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">${qBtns}</div>
+                <div style="background:#f1f2f6; padding:20px; border-radius:15px; margin-bottom:20px; display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <input type="date" id="kmj-date" class="inp-grade" style="width:auto; padding:10px; font-weight:normal;">
+                    <input type="file" id="kmj-file" style="flex:1;">
+                    <button class="btn btn-primary" onclick="uploadKMJ()"><i class="fas fa-upload"></i> Жүктеу</button>
+                </div>
+                <div id="kmj-list"></div>`;
+            renderKMJList();
+        }
+
+        function uploadKMJ() {
+            let date = document.getElementById('kmj-date').value;
+            let fileInput = document.getElementById('kmj-file');
+            if(!date || fileInput.files.length === 0) return alert("Күні мен файлды таңдаңыз!");
+            
+            let fileName = fileInput.files[0].name;
+            if(!kmjDB[currentSubject]) kmjDB[currentSubject] = {};
+            if(!kmjDB[currentSubject][currentKMJClass]) kmjDB[currentSubject][currentKMJClass] = {1:[], 2:[], 3:[], 4:[]};
+            
+            kmjDB[currentSubject][currentKMJClass][currentKMJQuarter].push({ id: Date.now(), date, fileName });
+            localStorage.setItem('edusana_kmj_v2', JSON.stringify(kmjDB));
+            
+            alert("Файл сәтті жүктелді!");
+            renderKMJList();
+            fileInput.value = '';
+        }
+
+        function renderKMJList() {
+            let list = document.getElementById('kmj-list');
+            let files = [];
+            if(kmjDB[currentSubject] && kmjDB[currentSubject][currentKMJClass]) {
+                files = kmjDB[currentSubject][currentKMJClass][currentKMJQuarter] || [];
+            }
+            
+            if(files.length === 0) { list.innerHTML = `<p style="color:#888; font-style:italic;">Бұл тоқсанда файлдар жоқ.</p>`; return; }
+            
+            // Сұрыптау (күні бойынша)
+            files.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+            list.innerHTML = files.map((f, i) => `<div class="file-list-item animate__animated animate__fadeInUp">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <i class="fas fa-file-word fa-2x" style="color:#3498db;"></i>
+                    <div><div style="font-weight:bold; color:var(--text);">${f.fileName}</div><div style="font-size:12px; color:#7f8c8d; margin-top:5px;"><i class="fas fa-calendar-day"></i> Күні: ${f.date}</div></div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-outline" style="padding:8px 15px;" onclick="alert('Имитация: Файл ашылды - ${f.fileName}')"><i class="fas fa-eye"></i></button>
+                    <button class="btn" style="background:#ff7675; color:white; padding:8px 15px;" onclick="deleteKMJ(${i})"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>`).join('');
+        }
+
+        function deleteKMJ(idx) {
+            if(confirm("Файлды өшіру?")) {
+                kmjDB[currentSubject][currentKMJClass][currentKMJQuarter].splice(idx, 1);
+                localStorage.setItem('edusana_kmj_v2', JSON.stringify(kmjDB));
+                renderKMJList();
+            }
+        }
+
+        // БАСҚА ФУНКЦИЯЛАР (AI, Кесте, Чат, Рандом)
+        const baseScheduleData = [
+            { time: "08:00 - 08:45", isBreak: false }, { time: "08:45 - 08:50 (Үзіліс 5 мин)", isBreak: true },
+            { time: "08:50 - 09:35", isBreak: false }, { time: "09:35 - 09:45 (Үзіліс 10 мин)", isBreak: true },
+            { time: "09:45 - 10:30", isBreak: false }, { time: "10:30 - 10:40 (Үзіліс 10 мин)", isBreak: true },
+            { time: "10:40 - 11:25", isBreak: false }, { time: "11:25 - 11:35 (Үзіліс 10 мин)", isBreak: true },
+            { time: "11:35 - 12:20", isBreak: false }, { time: "12:20 - 12:25 (Үзіліс 5 мин)", isBreak: true },
+            { time: "12:25 - 13:10", isBreak: false }
+        ];
+
+        function loadClassSchedule(className) {
+            document.getElementById('sched-class-title').innerText = `${className} сыныбының сабақ кестесі`;
+            let days = ["Дүйсенбі", "Сейсенбі", "Сәрсенбі", "Бейсенбі", "Жұма"];
+            let html = '<div class="schedule-grid">';
+            days.forEach((day, dIdx) => {
+                html += `<div class="day-group"><div class="day-header-box">${day}</div>`;
+                let lessonCount = 5 + (dIdx % 2); 
+                let currentLessonNum = 1;
+                baseScheduleData.forEach((item) => {
+                    if(currentLessonNum > lessonCount && !item.isBreak) return;
+                    if(item.isBreak) {
+                        if(currentLessonNum <= lessonCount) html += `<div class="break-time"><i class="fas fa-bell"></i> ${item.time}</div>`;
+                    } else {
+                        let subjIdx = (dIdx * 3 + currentLessonNum * 2 + className.charCodeAt(0)) % baseSubjects.length;
+                        let subj = baseSubjects[subjIdx];
+                        html += `<div class="lesson"><div class="lesson-num" style="background:var(--primary); color:white; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-weight:bold;">${currentLessonNum}</div><div class="lesson-info" style="display:flex; flex-direction:column; gap:5px;"><span class="subject" style="font-weight:bold; font-size:1.1rem;">${subj}</span><span class="teacher" style="font-size:12px; color:#7f8c8d;">Каб: ${300 + (subjIdx * 2)} | ${item.time.split('-')[0].trim()}</span></div></div>`;
+                        currentLessonNum++;
+                    }
+                });
+                html += `</div>`;
+            });
+            html += '</div>';
+            document.getElementById('sched-render').innerHTML = html;
+        }
+
+        // Ақылды Sana AI логикасы
+        function askAI() {
+            const inp = document.getElementById('ai-input'), box = document.getElementById('chat-area'); 
+            let q = inp.value.trim(); if(!q) return;
+            box.innerHTML += `<div class="msg user animate__animated animate__fadeInRight">${q}</div>`; 
+            inp.value = ""; box.scrollTop = box.scrollHeight;
+            
+            // Жасанды интеллект имитациясы
+            setTimeout(() => {
+                let ans = "Кешіріңіз, сұрағыңызды нақтылаңызшы. Мен білім беру, сабақ жоспарлары және мектеп бағдарламасы бойынша көмектесе аламын.";
+                let qLower = q.toLowerCase();
+                
+                if(qLower.includes("сәлем")) ans = "Сәлеметсіз бе! Бүгін қандай сабаққа көмектесейін?";
+                else if(qLower.includes("математика") || qLower.includes("есеп")) ans = "Математикадан формулалар немесе есеп шығару жолдарын іздеп тұрсыз ба? Нақты есепті жазсаңыз, бағыт көрсетемін.";
+                else if(qLower.includes("қмж") || qLower.includes("жоспар")) ans = "Қысқа мерзімді жоспар (ҚМЖ) құру үшін маған пәнді, сыныпты және сабақ тақырыбын жазыңыз. Мен сізге Блум таксономиясы бойынша мақсаттарды құрастырып беремін.";
+                else if(qLower.includes("тарих")) ans = "Қазақстан немесе Дүниежүзі тарихы ма? Белгілі бір ғасырды немесе тарихи тұлғаны сұрасаңыз, қызықты фактілер ұсынамын.";
+                else if(qLower.includes("рахмет")) ans = "Оқасы жоқ! Әрқашан көмектесуге дайынмын. Сәттілік!";
+                
+                box.innerHTML += `<div class="msg bot animate__animated animate__fadeInLeft"><b>Sana AI:</b> ${ans}</div>`; 
+                box.scrollTop = box.scrollHeight; 
+            }, 800);
+        }
+
+        function loadChatMessages() {
+            const box = document.getElementById('t-chat-box'); if(!box) return;
+            box.innerHTML = chatDB.map(m => `<div class="t-msg ${m.sender === currentUserInfo.name ? 'mine' : 'others'}">${m.sender !== currentUserInfo.name ? `<div style="font-size: 11px; margin-bottom: 8px; font-weight: bold; color: var(--primary);">${m.sender} (${m.role})</div>` : ''}<div style="font-size: 1.05rem;">${m.text}</div><div style="font-size: 11px; opacity: 0.8; text-align: right; margin-top: 8px;"><i class="far fa-clock"></i> ${m.time}</div></div>`).join('');
+            box.scrollTop = box.scrollHeight;
+        }
+        function sendChatMessage() {
+            const inp = document.getElementById('t-chat-input'); const text = inp.value.trim(); if(!text) return;
+            chatDB.push({ sender: currentUserInfo.name, role: currentUserInfo.role, text: text, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
+            localStorage.setItem('edusana_chat', JSON.stringify(chatDB)); inp.value = ''; loadChatMessages();
+        }
+
+        function startRandomizer() {
+            let cls = document.getElementById('rand-class-sel').value; if(!cls) return alert("Алдымен сыныпты таңдаңыз!");
+            let students = studentDB[cls].map(s => s.name); let resBox = document.getElementById('rand-result');
+            let spins = 0;
+            resBox.style.color = 'var(--text)';
+            let interval = setInterval(() => {
+                resBox.innerText = students[Math.floor(Math.random() * students.length)]; spins++;
+                if(spins > 15) { 
+                    clearInterval(interval); 
+                    resBox.innerHTML = `🎉 <span style="color:var(--primary); font-size: 1.2em;">${students[Math.floor(Math.random() * students.length)]}</span> 🎉`; 
+                    resBox.classList.add('animate__animated', 'animate__tada');
+                    setTimeout(() => resBox.classList.remove('animate__animated', 'animate__tada'), 1000);
+                }
+            }, 100);
+        }
+
+        function toggleDark() { document.body.classList.toggle('dark-mode'); }
+        function logoutAndReset() { location.reload(); }
+    </script>
+</body>
+</html>
